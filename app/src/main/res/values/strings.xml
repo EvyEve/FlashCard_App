@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FlashCrd_App</string>
+    <string name="frontQuestion">Who is the 44th President of the United States?</string>
+    <string name="barack_obama">Barack Obama</string>
+</resources>
