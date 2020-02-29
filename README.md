@@ -15,11 +15,11 @@
 `TODO://` In the User stories section below, add an `x` between the `-[ ]` like this `- [x]` for any user story you complete. (☝️ Remove this paragraph after after checking off user stories)
 
 ## Required
-- [ ] Create New Project in Android Studio
-- [ ] Add a view for the front side of the flashcard to display the question
-- [ ] Add a view for the back side of the flashcard to display the answer
-- [ ] Build in logic to show the answer side when the card is tapped
-- [ ] Push code to GitHub
+- [x] Create New Project in Android Studio
+- [x] Add a view for the front side of the flashcard to display the question
+- [x] Add a view for the back side of the flashcard to display the answer
+- [x] Build in logic to show the answer side when the card is tapped
+- [x] Push code to GitHub
 ## Optional
 - [ ] toggle the flashcard between the question side and the answer side
 - [ ] Style the question and answer side of the card to better distinguish between the two sides
