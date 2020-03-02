@@ -1,4 +1,4 @@
-# FlashCrd_App
+# Flash Card App
 
 ## Part 1
 
@@ -19,3 +19,6 @@
 - [ ] Add selectable multiple choice answers beneath the card
    - [ ] Change the background color of the multiple choice answers when clicked to indicate whether the question was answered correctly
 - [ ] Further customize and style the card
+
+
+#### @Codepath-Mobile App Design Workshop
