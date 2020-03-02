@@ -1,18 +1,11 @@
 # FlashCrd_App
 
-📝 `NOTE:` Paste the README templates for each subsequent lab here at the top, (i.e. lab 2, 3, 4). This will show a history of your development process including which users tories you completed and how your app looked and functioned at each step.
-
-## Lab 1
+## Part 1
 
 ### App Description
-`TODO://` Add app description
-
-### App Walk-though
-`TODO://` Add the URL to your animated app walk-though `gif` in the image tag below. Make sure the gif actually renders and animates when viewing this README. (☝️ Remove this paragraph after after adding gif)
+`TODO://` Flashcard app - This part focuses on how to add and customize views to be displayed on the screen. By the end of this part it will be a basic Flashcard app that can display a question, and on tap / click display the answer to the question.
 
 <img src="https://github.com/EvyEve/FlashCrd_App/blob/master/flash.gif" width=200>
-
-`TODO://` In the User stories section below, add an `x` between the `-[ ]` like this `- [x]` for any user story you complete. (☝️ Remove this paragraph after after checking off user stories)
 
 ## Required
 - [x] Create New Project in Android Studio
