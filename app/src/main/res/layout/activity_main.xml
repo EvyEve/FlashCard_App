@@ -8,21 +8,36 @@
 
     <TextView
         android:id="@+id/frontQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_width="379dp"
+        android:layout_height="227dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/question_background"
+        android:gravity="center"
+        android:elevation="5dp"
         android:text="@string/frontQuestion"
         android:textAlignment="center"
-        android:textSize="50sp" />
+        android:textColor="#F5FFFFFF"
+        android:textSize="42sp" />
 
     <TextView
         android:id="@+id/answerQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="379dp"
+        android:layout_height="228dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="423dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="363dp"
+        android:background="@drawable/answer_background"
+        android:gravity="center"
         android:text="@string/barack_obama"
         android:textAlignment="center"
+        android:textColor="#FF5722"
         android:textSize="46sp"
+        android:textStyle="bold"
         android:visibility="invisible" />
 </RelativeLayout>
