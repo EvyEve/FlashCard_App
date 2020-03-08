@@ -2,6 +2,7 @@ package com.example.flashcrd_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.answer3).setBackgroundColor(getResources().getColor(R.color.green));
             }
         });
+        //Textview to reset choices back to original look before choice was made
         findViewById(R.id.resetAnswers).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.answer3).setBackgroundColor(getResources().getColor(R.color.orange));
             }
         });
+        //Toggling card choice visibility via ic_open_eye icon & ic_close_eye icon
         findViewById(R.id.toggle_choices_visibility).setOnClickListener(new View.OnClickListener() {
             boolean isShowingAnswers = true;
             @Override
@@ -63,5 +66,26 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        //Adding a new activity and Navigating to it
+        findViewById(R.id.add_Card).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
+                //Start Next Activity & Specify Data Is Expected To Be Returned
+                MainActivity.this.startActivityForResult(intent, 100);
+            }
+        });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            //Storing String values from previous activity
+            String question = data.getExtras().getString("questString");
+            String answer = data.getExtras().getString("anString");
+
+            ((TextView) findViewById(R.id.frontQuestion)).setText(question);
+            ((TextView) findViewById(R.id.answer3)).setText(answer);
+        }
     }
 }
