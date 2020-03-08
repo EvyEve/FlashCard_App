@@ -24,6 +24,8 @@
 
 <img src="https://github.com/EvyEve/FlashCrd_App/blob/master/flash_op2.gif" width=200>
 
-- [ ] Further customize and style the card
+- [x] Further customize and style the card
+
+<img src="https://github.com/EvyEve/FlashCrd_App/blob/master/flash_op3.gif" width=200>
 
 #### @Codepath-Mobile App Design Workshop

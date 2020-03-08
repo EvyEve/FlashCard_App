@@ -70,4 +70,14 @@
         android:layout_marginTop="497dp"
         android:layout_marginEnd="0dp"
         android:text="@string/resetAnswers" />
+
+    <ImageView
+    android:id="@+id/toggle_choices_visibility"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:contentDescription="@string/iconToggle"
+    android:src="@drawable/ic_close_eye" />
+
 </RelativeLayout>
