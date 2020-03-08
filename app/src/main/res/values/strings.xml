@@ -5,4 +5,5 @@
     <string name="answer1">Bill Clinton</string>
     <string name="answer2">George H.W. Bush</string>
     <string name="answer3">Barack Obama</string>
+    <string name="resetAnswers" />
 </resources>

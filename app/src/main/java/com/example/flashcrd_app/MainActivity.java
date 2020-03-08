@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -33,6 +34,16 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.answer3).setBackgroundColor(getResources().getColor(R.color.green));
             }
         });
+        findViewById(R.id.resetAnswers).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.answer1).setBackgroundColor(getResources().getColor(R.color.orange));
+                findViewById(R.id.answer2).setBackgroundColor(getResources().getColor(R.color.orange));
+                findViewById(R.id.answer3).setBackgroundColor(getResources().getColor(R.color.orange));
+            }
+        });
+
+
 
 
     }
