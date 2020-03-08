@@ -2,4 +2,7 @@
     <string name="app_name">FlashCrd_App</string>
     <string name="frontQuestion">Who is the 44th President of the United States?</string>
     <string name="barack_obama">Barack Obama</string>
+    <string name="answer1">Bill Clinton</string>
+    <string name="answer2">George H.W. Bush</string>
+    <string name="answer3">Barack Obama</string>
 </resources>

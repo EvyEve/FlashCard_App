@@ -19,9 +19,11 @@
 
 <img src="https://github.com/EvyEve/FlashCrd_App/blob/master/flash_op1.gif" width=200>
 
-- [ ] Add selectable multiple choice answers beneath the card
-   - [ ] Change the background color of the multiple choice answers when clicked to indicate whether the question was answered correctly
-- [ ] Further customize and style the card
+- [x] Add selectable multiple choice answers beneath the card
+   - [x] Change the background color of the multiple choice answers when clicked to indicate whether the question was answered correctly
 
+<img src="https://github.com/EvyEve/FlashCrd_App/blob/master/flash_op2.gif" width=200>
+
+- [ ] Further customize and style the card
 
 #### @Codepath-Mobile App Design Workshop

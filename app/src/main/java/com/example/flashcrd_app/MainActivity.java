@@ -12,21 +12,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //OnClickListener is how Android handles users actions / interaction with the app
-        findViewById(R.id.frontQuestion).setOnClickListener(new View.OnClickListener() {
-            //OnClickListener to show answer & hide question
+
+        findViewById(R.id.answer1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.frontQuestion).setVisibility(View.INVISIBLE);
-                findViewById(R.id.answerQuestion).setVisibility(View.VISIBLE);
+                findViewById(R.id.answer1).setBackgroundColor(getResources().getColor(R.color.red));
+                findViewById(R.id.answer3).setBackgroundColor(getResources().getColor(R.color.green));
             }
         });
-        //OnClicklistener to show question & hide answer
-        findViewById(R.id.answerQuestion).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.answer2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.answerQuestion).setVisibility(View.INVISIBLE);
-                findViewById(R.id.frontQuestion).setVisibility(View.VISIBLE);
+                findViewById(R.id.answer2).setBackgroundColor(getResources().getColor(R.color.red));
+                findViewById(R.id.answer3).setBackgroundColor(getResources().getColor(R.color.green));
             }
         });
+        findViewById(R.id.answer3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.answer3).setBackgroundColor(getResources().getColor(R.color.green));
+            }
+        });
+
+
     }
 }
