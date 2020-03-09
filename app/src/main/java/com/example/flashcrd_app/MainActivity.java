@@ -15,34 +15,51 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //OnClickListener is how Android handles users actions / interaction with the app
+        findViewById(R.id.frontQuestion).setOnClickListener(new View.OnClickListener() {
+            //OnClickListener to show answer & hide question
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.frontQuestion).setVisibility(View.INVISIBLE);
+                findViewById(R.id.answerQuestion).setVisibility(View.VISIBLE);
+            }
+        });
+        //OnClicklistener to show question & hide answer
+        findViewById(R.id.answerQuestion).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.answerQuestion).setVisibility(View.INVISIBLE);
+                findViewById(R.id.frontQuestion).setVisibility(View.VISIBLE);
+            }
+        });
 
-        findViewById(R.id.answer1).setOnClickListener(new View.OnClickListener() {
+
+        findViewById(R.id.choice1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.answer1).setBackgroundColor(getResources().getColor(R.color.red));
-                findViewById(R.id.answer3).setBackgroundColor(getResources().getColor(R.color.green));
+                findViewById(R.id.choice1).setBackgroundColor(getResources().getColor(R.color.red));
+                findViewById(R.id.choice3).setBackgroundColor(getResources().getColor(R.color.green));
             }
         });
-        findViewById(R.id.answer2).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.choice2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.answer2).setBackgroundColor(getResources().getColor(R.color.red));
-                findViewById(R.id.answer3).setBackgroundColor(getResources().getColor(R.color.green));
+                findViewById(R.id.choice2).setBackgroundColor(getResources().getColor(R.color.red));
+                findViewById(R.id.choice3).setBackgroundColor(getResources().getColor(R.color.green));
             }
         });
-        findViewById(R.id.answer3).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.choice3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.answer3).setBackgroundColor(getResources().getColor(R.color.green));
+                findViewById(R.id.choice3).setBackgroundColor(getResources().getColor(R.color.green));
             }
         });
         //Textview to reset choices back to original look before choice was made
         findViewById(R.id.resetAnswers).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.answer1).setBackgroundColor(getResources().getColor(R.color.orange));
-                findViewById(R.id.answer2).setBackgroundColor(getResources().getColor(R.color.orange));
-                findViewById(R.id.answer3).setBackgroundColor(getResources().getColor(R.color.orange));
+                findViewById(R.id.choice1).setBackgroundColor(getResources().getColor(R.color.orange));
+                findViewById(R.id.choice2).setBackgroundColor(getResources().getColor(R.color.orange));
+                findViewById(R.id.choice3).setBackgroundColor(getResources().getColor(R.color.orange));
             }
         });
         //Toggling card choice visibility via ic_open_eye icon & ic_close_eye icon
@@ -52,21 +69,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(isShowingAnswers) {
                     ((ImageView) findViewById(R.id.toggle_choices_visibility)).setImageResource(R.drawable.ic_open_eye);
-                    findViewById(R.id.answer1).setVisibility(View.INVISIBLE);
-                    findViewById(R.id.answer2).setVisibility(View.INVISIBLE);
-                    findViewById(R.id.answer3).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.choice1).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.choice2).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.choice3).setVisibility(View.INVISIBLE);
                     isShowingAnswers=false;
                 }
                 else{
                     ((ImageView) findViewById(R.id.toggle_choices_visibility)).setImageResource(R.drawable.ic_close_eye);
-                    findViewById(R.id.answer1).setVisibility(View.VISIBLE);
-                    findViewById(R.id.answer2).setVisibility(View.VISIBLE);
-                    findViewById(R.id.answer3).setVisibility(View.VISIBLE);
+                    findViewById(R.id.choice1).setVisibility(View.VISIBLE);
+                    findViewById(R.id.choice2).setVisibility(View.VISIBLE);
+                    findViewById(R.id.choice3).setVisibility(View.VISIBLE);
                     isShowingAnswers=true;
                 }
             }
         });
-        //Adding a new activity and Navigating to it
+        //Adding a new activity / card and Navigating to it
         findViewById(R.id.add_Card).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +92,15 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivityForResult(intent, 100);
             }
         });
+
+//        findViewById(R.id.edit_Card).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
     }
+    //Method to get & store data from previous activity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -85,7 +110,8 @@ public class MainActivity extends AppCompatActivity {
             String answer = data.getExtras().getString("anString");
 
             ((TextView) findViewById(R.id.frontQuestion)).setText(question);
-            ((TextView) findViewById(R.id.answer3)).setText(answer);
+            ((TextView) findViewById(R.id.answerQuestion)).setText(answer);
+            ((TextView) findViewById(R.id.choice3)).setText(answer);
         }
     }
 }
