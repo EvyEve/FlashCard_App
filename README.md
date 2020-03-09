@@ -11,6 +11,7 @@
 - [x] User can enter and submit a Question and Answer through the 'Add Card Screen'
 - [x] User will see the card they just created on the main screen when they press the 'Save Button'
 - [x] Push your progress to GitHub!
+
 <img src="https://github.com/EvyEve/FlashCrd_App/blob/master/Part2_Gifs/flashp2_req.gif" width=200> <br>
 ## Optional
 - [ ] User can edit a card
