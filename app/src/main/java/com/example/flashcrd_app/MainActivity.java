@@ -93,12 +93,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        findViewById(R.id.edit_Card).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
+        findViewById(R.id.edit_Card).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
+                //Grabbing the text from textview & storing it in a string
+                String questEdit = ((TextView) findViewById(R.id.frontQuestion)).getText().toString();
+                String ansEdit = ((TextView) findViewById(R.id.answerQuestion)).getText().toString();
+                //Passing the string data to the intent for the next activity
+                intent.putExtra("qEdit", questEdit);
+                intent.putExtra("aEdit",ansEdit);
+                //Start Next Activity & Specify Data Is Expected To Be Returned
+                MainActivity.this.startActivityForResult(intent, 100);
+            }
+        });
     }
     //Method to get & store data from previous activity
     @Override
