@@ -43,6 +43,6 @@
    - [x] Change the background color of the multiple choice answers when clicked to indicate whether the question was answered correctly
 - [x] Further customize and style the card
 
-<img src="https://github.com/EvyEve/FlashCrd_App/blob/master/Part1_Gifs/flash_op1.gif" width=200> <img src="https://github.com/EvyEve/FlashCrd_App/blob/master/Part1_Gifs/flash_op2.gif" width=200> <img src="https://github.com/EvyEve/FlashCrd_App/blob/master/Part1_Gifs/flash_op3.gif" width=200> <br>
+<img src="https://github.com/EvyEve/FlashCrd_App/blob/master/Part1_Gifs/flash_op1.gif" width=200>  <img src="https://github.com/EvyEve/FlashCrd_App/blob/master/Part1_Gifs/flash_op2.gif" width=200>  <img src="https://github.com/EvyEve/FlashCrd_App/blob/master/Part1_Gifs/flash_op3.gif" width=200>
 
 #### @Codepath-Mobile App Design Workshop
