@@ -9,5 +9,7 @@
     <string name="iconToggle" />
     <string name="questionText">Enter Question Here</string>
     <string name="answerText">Enter Answer Here</string>
+    <string name="wrongAns1">Enter Wrong Option Here</string>
+    <string name="wrongAns2">Enter Another Wrong Option Here</string>
 </resources>
 

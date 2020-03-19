@@ -6,6 +6,105 @@
     android:layout_height="match_parent"
     tools:context=".AddCardActivity">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="387dp"
+        android:layout_height="64dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="66dp"
+        android:gravity="center|start"
+        android:theme="@style/Question">
+
+        <EditText
+            android:id="@+id/questionText"
+            android:layout_width="387dp"
+            android:layout_height="64dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="66dp"
+            android:backgroundTint="#03A9F4"
+            android:ems="10"
+            android:gravity="center|start"
+            android:hint="@string/questionText"
+            android:inputType="textMultiLine"
+            android:textStyle="bold" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="387dp"
+        android:layout_height="64dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="166dp"
+        android:gravity="center|start"
+        android:theme="@style/RightAnswer">
+
+        <EditText
+            android:id="@+id/answerText"
+            android:layout_width="387dp"
+            android:layout_height="64dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="166dp"
+            android:ems="10"
+            android:backgroundTint="#4CAF50"
+            android:gravity="center|start"
+            android:hint="@string/answerText"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:textStyle="bold" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="259dp"
+        android:backgroundTint="#F44336"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/wrongAns1"
+            android:layout_width="387dp"
+            android:layout_height="64dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="263dp"
+            android:backgroundTint="#F44336"
+            android:ems="10"
+            android:gravity="center|start"
+            android:hint="@string/wrongAns1"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:textStyle="bold"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="361dp"
+        android:gravity="center|start"
+        android:backgroundTint="#F44336">
+
+        <EditText
+            android:id="@+id/wrongAns2"
+            android:layout_width="387dp"
+            android:layout_height="64dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="361dp"
+            android:backgroundTint="#F44336"
+            android:ems="10"
+            android:gravity="center|start"
+            android:hint="@string/wrongAns2"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:textStyle="bold"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
     <ImageView
         android:id="@+id/cancel_Card"
         android:layout_width="61dp"
@@ -32,32 +131,6 @@
         android:contentDescription="@string/iconToggle"
         android:src="@drawable/ic_save" />
 
-    <EditText
-        android:id="@+id/questionText"
-        android:layout_width="387dp"
-        android:layout_height="58dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="68dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:gravity="center|start"
-        android:hint="@string/questionText"
-        android:inputType="textMultiLine" />
 
-    <EditText
-        android:id="@+id/answerText"
-        android:layout_width="387dp"
-        android:layout_height="58dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="213dp"
-        android:ems="10"
-        android:gravity="center|start"
-        android:hint="@string/answerText"
-        android:importantForAutofill="no"
-        android:inputType="textMultiLine"/>
 
 </RelativeLayout>

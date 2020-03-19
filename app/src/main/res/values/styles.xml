@@ -6,6 +6,17 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+<!--        <item name="colorControlNormal">#d32f2f</item>-->
+        <item name="colorControlActivated">#ff5722</item>
+    </style>
+    <!-- Base application theme. -->
+    <style name="RightAnswer" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!--        <item name="colorControlNormal">#d32f2f</item>-->
+        <item name="colorControlActivated">#4CAF50</item>
     </style>
 
+    <style name="Question" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!--        <item name="colorControlNormal">#d32f2f</item>-->
+        <item name="colorControlActivated">#2196F3</item>
+    </style>
 </resources>
