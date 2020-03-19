@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,5 +123,9 @@ public class MainActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.answerQuestion)).setText(answer);
             ((TextView) findViewById(R.id.choice3)).setText(answer);
         }
+        //Snackbar display message once card has been successfully created
+        Snackbar.make(findViewById(R.id.frontQuestion),
+                "Card Successfully Created!",
+                Snackbar.LENGTH_SHORT).show();
     }
 }
