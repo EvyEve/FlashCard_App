@@ -3,88 +3,164 @@ package com.example.flashcrd_app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    // Database variable - Instance of database to allow both read and write to database.
+    FlashcardDatabase flashcardDatabase;
+
+    // Variable to hold / store list of flashcard objects
+    List<Flashcard> allFlashCards;
+
+    //Variable to keep track of current card index
+    int currentCardDisplayedIndex = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Initialize local flashcard database variable
+        flashcardDatabase = new FlashcardDatabase(this);
+        //Get all of the flashcards saved in the database
+        allFlashCards = flashcardDatabase.getAllCards();
+
+        //Checks to see if database is empty. If not return / display last saved flashcard
+        if (allFlashCards != null && allFlashCards.size() > 0) {
+            ((TextView) findViewById(R.id.flashQuestion)).setText(allFlashCards.get(0).getQuestion());
+            ((TextView) findViewById(R.id.flashAnswer)).setText(allFlashCards.get(0).getAnswer());
+        }
+
         //OnClickListener is how Android handles users actions / interaction with the app
-        findViewById(R.id.frontQuestion).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.flashQuestion).setOnClickListener(new View.OnClickListener() {
             //OnClickListener to show answer & hide question
             @Override
             public void onClick(View v) {
-                findViewById(R.id.frontQuestion).setVisibility(View.INVISIBLE);
-                findViewById(R.id.answerQuestion).setVisibility(View.VISIBLE);
+                findViewById(R.id.flashQuestion).setVisibility(View.INVISIBLE);
+                findViewById(R.id.flashAnswer).setVisibility(View.VISIBLE);
             }
         });
+
         //OnClicklistener to show question & hide answer
-        findViewById(R.id.answerQuestion).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.flashAnswer).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.answerQuestion).setVisibility(View.INVISIBLE);
-                findViewById(R.id.frontQuestion).setVisibility(View.VISIBLE);
+                findViewById(R.id.flashAnswer).setVisibility(View.INVISIBLE);
+                findViewById(R.id.flashQuestion).setVisibility(View.VISIBLE);
+            }
+        });
+//
+//
+//        findViewById(R.id.choice1).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                findViewById(R.id.choice1).setBackground(getResources().getDrawable(R.drawable.wrong_choice_background));
+//                findViewById(R.id.choice3).setBackground(getResources().getDrawable(R.drawable.correct_choice_background));
+//            }
+//        });
+//        findViewById(R.id.choice2).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                findViewById(R.id.choice2).setBackground(getResources().getDrawable(R.drawable.wrong_choice_background));
+//                findViewById(R.id.choice3).setBackground(getResources().getDrawable(R.drawable.correct_choice_background));
+//            }
+//        });
+//        findViewById(R.id.choice3).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                findViewById(R.id.choice3).setBackground(getResources().getDrawable(R.drawable.correct_choice_background));
+//            }
+//        });
+//        //Textview to reset choices back to original look before choice was made
+//        findViewById(R.id.resetAnswers).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                findViewById(R.id.choice1).setBackground(getResources().getDrawable(R.drawable.choices_backgroung));
+//                findViewById(R.id.choice2).setBackground(getResources().getDrawable(R.drawable.choices_backgroung));
+//                findViewById(R.id.choice3).setBackground(getResources().getDrawable(R.drawable.choices_backgroung));
+//            }
+//        });
+
+        // Browse Through Previously Created Flash Cards In Local Database
+        findViewById(R.id.next_card).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Toast Error Message For User To Add A Flash Card To The Database if Flashcard database is empty
+                if (allFlashCards.isEmpty()) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Please Add A Card", Toast.LENGTH_SHORT);
+                    TextView tstView = (TextView) toast.getView().findViewById(android.R.id.message);
+                    tstView.setTextColor(Color.WHITE);
+                    tstView.setTypeface(null, Typeface.BOLD);
+                    toast.getView().setBackground(getResources().getDrawable(R.drawable.toast));
+                    toast.setGravity(0, 1, 600);
+                    toast.show();
+                }
+
+                // Toast Error Message For User To Add Another Flash Card To The Database if Only One Is Currently in Database
+                if (allFlashCards.size() == 1) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "There Is Only One Card, Add Another Card", Toast.LENGTH_SHORT);
+                    TextView tstView = (TextView) toast.getView().findViewById(android.R.id.message);
+                    tstView.setTextColor(Color.WHITE);
+                    tstView.setTypeface(null, Typeface.BOLD);
+                    toast.getView().setBackground(getResources().getDrawable(R.drawable.toast));
+                    toast.setGravity(0, 1, 600);
+                    toast.show();
+                }
+
+                // advance our pointer index so we can show the next card
+                currentCardDisplayedIndex++;
+
+                // make sure we don't get an IndexOutOfBoundsError if we are viewing the last indexed card in our list
+                if (currentCardDisplayedIndex > allFlashCards.size() - 1) {
+                    currentCardDisplayedIndex = 0;
+                }
+
+                // Shows Next Flash Card If There Is More Than One Card In Database
+                if(allFlashCards.size() > 1) {
+                    // set the question and answer TextViews with data from the database
+                    ((TextView) findViewById(R.id.flashQuestion)).setText(allFlashCards.get(currentCardDisplayedIndex).getQuestion());
+                    ((TextView) findViewById(R.id.flashAnswer)).setText(allFlashCards.get(currentCardDisplayedIndex).getAnswer());
+                }
+
             }
         });
 
 
-        findViewById(R.id.choice1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                findViewById(R.id.choice1).setBackground(getResources().getDrawable(R.drawable.wrong_choice_background));
-                findViewById(R.id.choice3).setBackground(getResources().getDrawable(R.drawable.correct_choice_background));
-            }
-        });
-        findViewById(R.id.choice2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                findViewById(R.id.choice2).setBackground(getResources().getDrawable(R.drawable.wrong_choice_background));
-                findViewById(R.id.choice3).setBackground(getResources().getDrawable(R.drawable.correct_choice_background));
-            }
-        });
-        findViewById(R.id.choice3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                findViewById(R.id.choice3).setBackground(getResources().getDrawable(R.drawable.correct_choice_background));
-            }
-        });
-        //Textview to reset choices back to original look before choice was made
-        findViewById(R.id.resetAnswers).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                findViewById(R.id.choice1).setBackground(getResources().getDrawable(R.drawable.choices_backgroung));
-                findViewById(R.id.choice2).setBackground(getResources().getDrawable(R.drawable.choices_backgroung));
-                findViewById(R.id.choice3).setBackground(getResources().getDrawable(R.drawable.choices_backgroung));
-            }
-        });
-        //Toggling card choice visibility via ic_open_eye icon & ic_close_eye icon
-        findViewById(R.id.toggle_choices_visibility).setOnClickListener(new View.OnClickListener() {
-            boolean isShowingAnswers = true;
-            @Override
-            public void onClick(View v) {
-                if(isShowingAnswers) {
-                    ((ImageView) findViewById(R.id.toggle_choices_visibility)).setImageResource(R.drawable.ic_open_eye);
-                    findViewById(R.id.choice1).setVisibility(View.INVISIBLE);
-                    findViewById(R.id.choice2).setVisibility(View.INVISIBLE);
-                    findViewById(R.id.choice3).setVisibility(View.INVISIBLE);
-                    isShowingAnswers=false;
-                }
-                else{
-                    ((ImageView) findViewById(R.id.toggle_choices_visibility)).setImageResource(R.drawable.ic_close_eye);
-                    findViewById(R.id.choice1).setVisibility(View.VISIBLE);
-                    findViewById(R.id.choice2).setVisibility(View.VISIBLE);
-                    findViewById(R.id.choice3).setVisibility(View.VISIBLE);
-                    isShowingAnswers=true;
-                }
-            }
-        });
+
+
+//        //Toggling card choice visibility via ic_open_eye icon & ic_close_eye icon
+//        findViewById(R.id.toggle_choices_visibility).setOnClickListener(new View.OnClickListener() {
+//            boolean isShowingAnswers = true;
+//            @Override
+//            public void onClick(View v) {
+//                if(isShowingAnswers) {
+//                    ((ImageView) findViewById(R.id.toggle_choices_visibility)).setImageResource(R.drawable.ic_open_eye);
+//                    findViewById(R.id.choice1).setVisibility(View.INVISIBLE);
+//                    findViewById(R.id.choice2).setVisibility(View.INVISIBLE);
+//                    findViewById(R.id.choice3).setVisibility(View.INVISIBLE);
+//                    isShowingAnswers=false;
+//                }
+//                else{
+//                    ((ImageView) findViewById(R.id.toggle_choices_visibility)).setImageResource(R.drawable.ic_close_eye);
+//                    findViewById(R.id.choice1).setVisibility(View.VISIBLE);
+//                    findViewById(R.id.choice2).setVisibility(View.VISIBLE);
+//                    findViewById(R.id.choice3).setVisibility(View.VISIBLE);
+//                    isShowingAnswers=true;
+//                }
+//            }
+//        });
         //Adding a new activity / card and Navigating to it
         findViewById(R.id.add_Card).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,16 +177,16 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
 
                 //Grabbing the text from MainActivity textview & storing it in a string
-                String questEdit = ((TextView) findViewById(R.id.frontQuestion)).getText().toString();
-                String ansEdit = ((TextView) findViewById(R.id.answerQuestion)).getText().toString();
-                String wrongEdit1 = ((TextView) findViewById(R.id.choice1)).getText().toString();
-                String wrongEdit2 = ((TextView) findViewById(R.id.choice2)).getText().toString();
+                String questEdit = ((TextView) findViewById(R.id.flashQuestion)).getText().toString();
+                String ansEdit = ((TextView) findViewById(R.id.flashAnswer)).getText().toString();
+//                String wrongEdit1 = ((TextView) findViewById(R.id.choice1)).getText().toString();
+//                String wrongEdit2 = ((TextView) findViewById(R.id.choice2)).getText().toString();
 
                 //Passing the string data from MainActivity to the intent for the next activity
                 intent.putExtra("qEdit", questEdit);
                 intent.putExtra("aEdit",ansEdit);
-                intent.putExtra("wEdit1", wrongEdit1);
-                intent.putExtra("wEdit2", wrongEdit2);
+//                intent.putExtra("wEdit1", wrongEdit1);
+//                intent.putExtra("wEdit2", wrongEdit2);
 
                 //Start Next Activity & Specify Data Is Expected To Be Returned
                 MainActivity.this.startActivityForResult(intent, 100);
@@ -125,17 +201,25 @@ public class MainActivity extends AppCompatActivity {
             //Storing String values from previous activity
             String question = data.getExtras().getString("questString");
             String answer = data.getExtras().getString("anString");
-            String wrgChoice1 = data.getExtras().getString("wrongCh1");
-            String wrgChoice2 = data.getExtras().getString("wrongCh2");
+//            String wrgChoice1 = data.getExtras().getString("wrongCh1");
+//            String wrgChoice2 = data.getExtras().getString("wrongCh2");
 
-            ((TextView) findViewById(R.id.frontQuestion)).setText(question);
-            ((TextView) findViewById(R.id.answerQuestion)).setText(answer);
-            ((TextView) findViewById(R.id.choice1)).setText(wrgChoice1);
-            ((TextView) findViewById(R.id.choice2)).setText(wrgChoice2);
-            ((TextView) findViewById(R.id.choice3)).setText(answer);
+            //Saves newly created flashcard data into local database
+            flashcardDatabase.insertCard(new Flashcard(question,answer));
+
+            // Updates list of flashcards
+            allFlashCards = flashcardDatabase.getAllCards();
+
+            //Sets created flashcard values to mainActivity textfields
+            ((TextView) findViewById(R.id.flashQuestion)).setText(question);
+            ((TextView) findViewById(R.id.flashAnswer)).setText(answer);
+//            ((TextView) findViewById(R.id.choice1)).setText(wrgChoice1);
+//            ((TextView) findViewById(R.id.choice2)).setText(wrgChoice2);
+//            ((TextView) findViewById(R.id.choice3)).setText(answer);
+
         }
         //Snackbar display message once card has been successfully created
-        Snackbar.make(findViewById(R.id.frontQuestion),
+        Snackbar.make(findViewById(R.id.flashQuestion),
                 "Card Successfully Created!",
                 Snackbar.LENGTH_SHORT).show();
     }

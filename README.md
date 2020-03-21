@@ -1,5 +1,21 @@
 # Flash Card App
 
+## Lab 3
+
+### App Description
+`TODO://` Flashcard app - This part will allow users to create and save multiple cards so that user can revisit the app to review their cards. 
+
+## Required
+- [x] User can create a card and still see their created card when the app is relaunched.
+- [x] User can create muliple cards and browse through all created cards
+
+<img src="https://github.com/EvyEve/FlashCrd_App/blob/master/Part2_Gifs/flashp3_req.gif" width=200> <br>
+## Optional
+- [ ] User can delete a card and no longer see it in their deck anymore
+- [ ] Flashcards are shown in random order instead of the order they were created in
+- [ ] User can edit a card and see the edit saved when they browse through their deck of cards
+- [ ] User can create flashcards with multiple answers and be able to browse through cards with multiple choice answers shown
+
 ## Part 2
 
 ### App Description
@@ -21,6 +37,7 @@
 - [x] App is further styled and customized!
 
 <img src="https://github.com/EvyEve/FlashCrd_App/blob/master/Part2_Gifs/flashp2_op1.gif" width=200>  <img src="https://github.com/EvyEve/FlashCrd_App/blob/master/Part2_Gifs/flashp2_op2.gif" width=200>  <img src="https://github.com/EvyEve/FlashCrd_App/blob/master/Part2_Gifs/flashp2_op3.gif" width=200>  <img src="https://github.com/EvyEve/FlashCrd_App/blob/master/Part2_Gifs/flashp2_op4.gif" width=200>  <img src="https://github.com/EvyEve/FlashCrd_App/blob/master/Part2_Gifs/flashp2_op5.gif" width=200>    
+
 ## Part 1
 
 ### App Description
