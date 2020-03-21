@@ -9,7 +9,7 @@
 - [x] User can create a card and still see their created card when the app is relaunched.
 - [x] User can create muliple cards and browse through all created cards
 
-<img src="https://github.com/EvyEve/FlashCrd_App/blob/master/Part2_Gifs/flashp3_req.gif" width=200> <br>
+<img src="https://github.com/EvyEve/FlashCrd_App/blob/master/Part3_Gifs/flashp3_req.gif" width=200> <br>
 ## Optional
 - [ ] User can delete a card and no longer see it in their deck anymore
 - [ ] Flashcards are shown in random order instead of the order they were created in
