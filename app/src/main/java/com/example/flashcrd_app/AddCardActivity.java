@@ -43,7 +43,7 @@ public class AddCardActivity extends AppCompatActivity {
                 if(question.isEmpty() || answer.isEmpty() ){//|| wrongOpt1.isEmpty() || wrongOpt2.isEmpty()) {
                     //Toast Error Message To User To Populate Both EditText Fields
                     Toast toast = Toast.makeText(getApplicationContext(), "Be Sure To Have Both Question & Answer!", Toast.LENGTH_SHORT);
-                    TextView tstView = (TextView) toast.getView().findViewById(android.R.id.message);
+                    TextView tstView = toast.getView().findViewById(android.R.id.message);
                     tstView.setTextColor(Color.WHITE);
                     tstView.setTypeface(null, Typeface.BOLD);
                     toast.getView().setBackground(getResources().getDrawable(R.drawable.toast));

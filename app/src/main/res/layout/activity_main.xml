@@ -8,40 +8,24 @@
 
     <TextView
         android:id="@+id/flashQuestion"
-        android:layout_width="379dp"
-        android:layout_height="227dp"
+        android:layout_width="match_parent"
+        android:layout_height="246dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="14dp"
         android:background="@drawable/question_background"
-        android:gravity="center"
         android:elevation="5dp"
+        android:gravity="center"
+        android:nestedScrollingEnabled="false"
+        android:padding="16dp"
         android:text="@string/frontQuestion"
         android:textAlignment="center"
         android:textColor="#F5FFFFFF"
         android:textSize="42sp" />
 
-    <TextView
-        android:id="@+id/flashAnswer"
-        android:layout_width="379dp"
-        android:layout_height="228dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="363dp"
-        android:background="@drawable/answer_background"
-        android:gravity="center"
-        android:text="@string/barack_obama"
-        android:textAlignment="center"
-        android:textColor="#FF5722"
-        android:textSize="46sp"
-        android:textStyle="bold"
-        android:visibility="invisible" />
-
-<!--    <TextView-->
+    <!--    <TextView-->
 <!--        android:id="@+id/choice1"-->
 <!--        android:layout_width="368dp"-->
 <!--        android:layout_height="57dp"-->
@@ -104,6 +88,27 @@
 <!--        android:contentDescription="@string/iconToggle"-->
 <!--        android:src="@drawable/ic_close_eye" />-->
 
+    <TextView
+        android:id="@+id/flashAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="246dp"
+        android:padding="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="345dp"
+        android:background="@drawable/answer_background"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:text="@string/backAnswer"
+        android:textAlignment="center"
+        android:textColor="#FF5722"
+        android:textSize="42sp"
+        android:visibility="invisible" />
+
     <ImageView
         android:id="@+id/next_card"
         android:layout_width="61dp"
@@ -113,6 +118,20 @@
         android:layout_marginEnd="21dp"
         android:contentDescription="@string/iconToggle"
         android:src="@drawable/ic_next" />
+
+    <ImageView
+        android:id="@+id/trash_card"
+        android:layout_width="61dp"
+        android:layout_height="64dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="340dp"
+        android:layout_marginBottom="270dp"
+        android:contentDescription="@string/iconToggle"
+        android:src="@drawable/ic_trash" />
 
     <ImageView
         android:id="@+id/add_Card"

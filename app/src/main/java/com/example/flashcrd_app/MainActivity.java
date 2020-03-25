@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,6 +36,15 @@ public class MainActivity extends AppCompatActivity {
         flashcardDatabase = new FlashcardDatabase(this);
         //Get all of the flashcards saved in the database
         allFlashCards = flashcardDatabase.getAllCards();
+
+        // Checks To See If Database Is Empty. If Not Return / Display An Empty State
+        if(allFlashCards.isEmpty()){
+            ((TextView) findViewById(R.id.flashQuestion)).setText("Welcome! \n Add A Flash Card To Begin!");
+            ((TextView) findViewById(R.id.flashAnswer)).setText("Your Flash Card Answers Will Go Here!");
+        }
+        // Adds Scrolling Capability to TextViews
+        ((TextView) findViewById(R.id.flashQuestion)).setMovementMethod(new ScrollingMovementMethod());
+        ((TextView) findViewById(R.id.flashAnswer)).setMovementMethod(new ScrollingMovementMethod());
 
         //Checks to see if database is empty. If not return / display last saved flashcard
         if (allFlashCards != null && allFlashCards.size() > 0) {
@@ -109,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 // Toast Error Message For User To Add Another Flash Card To The Database if Only One Is Currently in Database
-                if (allFlashCards.size() == 1) {
+                else if (allFlashCards.size() == 1) {
                     Toast toast = Toast.makeText(getApplicationContext(), "There Is Only One Card, Add Another Card", Toast.LENGTH_SHORT);
                     TextView tstView = (TextView) toast.getView().findViewById(android.R.id.message);
                     tstView.setTextColor(Color.WHITE);
@@ -133,12 +143,95 @@ public class MainActivity extends AppCompatActivity {
                     ((TextView) findViewById(R.id.flashQuestion)).setText(allFlashCards.get(currentCardDisplayedIndex).getQuestion());
                     ((TextView) findViewById(R.id.flashAnswer)).setText(allFlashCards.get(currentCardDisplayedIndex).getAnswer());
                 }
-
             }
         });
 
+        //Adding a new activity / card and Navigating to it
+        findViewById(R.id.add_Card).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
+                //Start Next Activity & Specify Data Is Expected To Be Returned
+                MainActivity.this.startActivityForResult(intent, 100);
+            }
+        });
+        // Edit a card that has already been created
+        findViewById(R.id.edit_Card).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
 
+                //Grabbing the text from MainActivity textview & storing it in a string
+                String questEdit = ((TextView) findViewById(R.id.flashQuestion)).getText().toString();
+                String ansEdit = ((TextView) findViewById(R.id.flashAnswer)).getText().toString();
+//                String wrongEdit1 = ((TextView) findViewById(R.id.choice1)).getText().toString();
+//                String wrongEdit2 = ((TextView) findViewById(R.id.choice2)).getText().toString();
 
+                //Passing the string data from MainActivity to the intent for the next activity
+                intent.putExtra("qEdit", questEdit);
+                intent.putExtra("aEdit",ansEdit);
+//                intent.putExtra("wEdit1", wrongEdit1);
+//                intent.putExtra("wEdit2", wrongEdit2);
+
+                //Start Next Activity & Specify Data Is Expected To Be Returned
+                MainActivity.this.startActivityForResult(intent, 100);
+            }
+        });
+        // Deletes Previously Created Flash Cards in Local Database
+        findViewById(R.id.trash_card).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(allFlashCards.size() > 1) {
+                    String deleteQuestion = ((TextView) findViewById(R.id.flashQuestion)).getText().toString();
+                    currentCardDisplayedIndex = allFlashCards.indexOf(deleteQuestion);
+
+                    if(currentCardDisplayedIndex < 1){
+                        flashcardDatabase.deleteCard(deleteQuestion);
+                        allFlashCards = flashcardDatabase.getAllCards();
+                        currentCardDisplayedIndex++; // Moves current index foward by 1
+
+                        // set the question and answer TextViews with data from the database
+                        ((TextView) findViewById(R.id.flashQuestion)).setText(allFlashCards.get(currentCardDisplayedIndex).getQuestion());
+                        ((TextView) findViewById(R.id.flashAnswer)).setText(allFlashCards.get(currentCardDisplayedIndex).getAnswer());
+                    }
+                    else{
+                        flashcardDatabase.deleteCard(deleteQuestion);
+                        allFlashCards = flashcardDatabase.getAllCards();
+                        currentCardDisplayedIndex--; // Subtracts current index by 1
+
+                        // set the question and answer TextViews with data from the database
+                        ((TextView) findViewById(R.id.flashQuestion)).setText(allFlashCards.get(currentCardDisplayedIndex).getQuestion());
+                        ((TextView) findViewById(R.id.flashAnswer)).setText(allFlashCards.get(currentCardDisplayedIndex).getAnswer());
+                    }
+//                    allFlashCards = flashcardDatabase.getAllCards();
+//                    // set the question and answer TextViews with data from the database
+//                    ((TextView) findViewById(R.id.flashQuestion)).setText(allFlashCards.get(currentCardDisplayedIndex).getQuestion());
+//                    ((TextView) findViewById(R.id.flashAnswer)).setText(allFlashCards.get(currentCardDisplayedIndex).getAnswer());
+                }
+                // Sets an Empty State For When All Cards Have Been Deleted
+                else{
+                    String deleteQuestion = ((TextView) findViewById(R.id.flashQuestion)).getText().toString();
+                    flashcardDatabase.deleteCard(deleteQuestion);
+                    allFlashCards = flashcardDatabase.getAllCards();
+                    currentCardDisplayedIndex--;
+
+                    ((TextView) findViewById(R.id.flashQuestion)).setText("To Begin (+)\n Please Add A Card!");
+                    ((TextView)findViewById(R.id.flashAnswer)).setText("Please Add An Answer For Your Card");
+                }
+                // Toast Message To Alert User There Are No More Cards To Delete & To Add A Card
+                if(allFlashCards.isEmpty()){
+                    Toast toast = Toast.makeText(getApplicationContext(), "No Cards To Delete. (+) Add A Card!", Toast.LENGTH_SHORT);
+                    TextView tstView = toast.getView().findViewById(android.R.id.message);
+                    tstView.setTextColor(Color.WHITE);
+                    tstView.setTypeface(null, Typeface.BOLD);
+                    toast.getView().setBackground(getResources().getDrawable(R.drawable.toast));
+                    toast.setGravity(0, 1, 600);
+                    toast.show();
+                }
+                allFlashCards = flashcardDatabase.getAllCards();
+            }
+        });
 
 //        //Toggling card choice visibility via ic_open_eye icon & ic_close_eye icon
 //        findViewById(R.id.toggle_choices_visibility).setOnClickListener(new View.OnClickListener() {
@@ -161,37 +254,7 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
-        //Adding a new activity / card and Navigating to it
-        findViewById(R.id.add_Card).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
-                //Start Next Activity & Specify Data Is Expected To Be Returned
-                MainActivity.this.startActivityForResult(intent, 100);
-            }
-        });
 
-        findViewById(R.id.edit_Card).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
-
-                //Grabbing the text from MainActivity textview & storing it in a string
-                String questEdit = ((TextView) findViewById(R.id.flashQuestion)).getText().toString();
-                String ansEdit = ((TextView) findViewById(R.id.flashAnswer)).getText().toString();
-//                String wrongEdit1 = ((TextView) findViewById(R.id.choice1)).getText().toString();
-//                String wrongEdit2 = ((TextView) findViewById(R.id.choice2)).getText().toString();
-
-                //Passing the string data from MainActivity to the intent for the next activity
-                intent.putExtra("qEdit", questEdit);
-                intent.putExtra("aEdit",ansEdit);
-//                intent.putExtra("wEdit1", wrongEdit1);
-//                intent.putExtra("wEdit2", wrongEdit2);
-
-                //Start Next Activity & Specify Data Is Expected To Be Returned
-                MainActivity.this.startActivityForResult(intent, 100);
-            }
-        });
     }
     //Method to get & store data from previous activity
     @Override
@@ -216,11 +279,11 @@ public class MainActivity extends AppCompatActivity {
 //            ((TextView) findViewById(R.id.choice1)).setText(wrgChoice1);
 //            ((TextView) findViewById(R.id.choice2)).setText(wrgChoice2);
 //            ((TextView) findViewById(R.id.choice3)).setText(answer);
-
+           int duration=-2;
+            //Snackbar display message once card has been successfully created
+            Snackbar.make(findViewById(R.id.flashQuestion),
+                    "Card Successfully Created!",
+                    Snackbar.LENGTH_SHORT).show();
         }
-        //Snackbar display message once card has been successfully created
-        Snackbar.make(findViewById(R.id.flashQuestion),
-                "Card Successfully Created!",
-                Snackbar.LENGTH_SHORT).show();
     }
 }

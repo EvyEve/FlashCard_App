@@ -1,10 +1,10 @@
 <resources>
    <string name="app_name">FlashCrd_App</string>
-    <string name="frontQuestion">Who is the 44th President of the United States?</string>
-    <string name="barack_obama">Barack Obama</string>
-    <string name="answer1">Bill Clinton</string>
-    <string name="answer2">George H.W. Bush</string>
-    <string name="answer3">Barack Obama</string>
+    <string name="frontQuestion"/>
+    <string name="backAnswer"/>
+    <string name="answer1"/>
+    <string name="answer2"/>
+    <string name="answer3"/>
     <string name="resetAnswers" />
     <string name="iconToggle" />
     <string name="questionText">Enter Question Here</string>

@@ -11,10 +11,12 @@
 
 <img src="https://github.com/EvyEve/FlashCrd_App/blob/master/Part3_Gifs/flashp3_req.gif" width=200> <br>
 ## Optional
-- [ ] User can delete a card and no longer see it in their deck anymore
+- [x] User can delete a card and no longer see it in their deck anymore
 - [ ] Flashcards are shown in random order instead of the order they were created in
 - [ ] User can edit a card and see the edit saved when they browse through their deck of cards
 - [ ] User can create flashcards with multiple answers and be able to browse through cards with multiple choice answers shown
+
+<img src="https://github.com/EvyEve/FlashCrd_App/blob/master/Part3_Gifs/flashp3_op1.gif" width=200>
 
 ## Part 2
 
